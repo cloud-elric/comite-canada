@@ -1,0 +1,204 @@
+2017/06/20 11:36:18 [error] [php] Trying to get property of non-object (C:\xampp\htdocs\wwwCanada2017\protected\views\usrUsuarios\inscripcion.php:286)
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(869): UsrUsuariosController->renderFile()
+#1 C:\xampp\htdocs\yii\framework\web\CController.php(782): UsrUsuariosController->renderPartial()
+#2 C:\xampp\htdocs\wwwCanada2017\protected\controllers\UsrUsuariosController.php(446): UsrUsuariosController->render()
+#3 C:\xampp\htdocs\wwwCanada2017\protected\controllers\UsrUsuariosController.php(286): UsrUsuariosController->usuarioNoInscrito()
+#4 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): UsrUsuariosController->actionConcurso()
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#6 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): UsrUsuariosController->runAction()
+#7 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#8 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#9 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): UsrUsuariosController->filterAccessControl()
+#10 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#11 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#12 C:\xampp\htdocs\yii\framework\web\CController.php(265): UsrUsuariosController->runActionWithFilters()
+#13 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): UsrUsuariosController->run()
+#14 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#15 C:\xampp\htdocs\yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#16 C:\xampp\htdocs\wwwCanada2017\index.php(13): CWebApplication->run()
+REQUEST_URI=/wwwCanada2017/usrUsuarios/concurso
+2017/06/20 11:37:40 [error] [php] Trying to get property of non-object (C:\xampp\htdocs\wwwCanada2017\protected\views\usrUsuarios\inscripcion.php:286)
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(869): UsrUsuariosController->renderFile()
+#1 C:\xampp\htdocs\yii\framework\web\CController.php(782): UsrUsuariosController->renderPartial()
+#2 C:\xampp\htdocs\wwwCanada2017\protected\controllers\UsrUsuariosController.php(446): UsrUsuariosController->render()
+#3 C:\xampp\htdocs\wwwCanada2017\protected\controllers\UsrUsuariosController.php(286): UsrUsuariosController->usuarioNoInscrito()
+#4 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): UsrUsuariosController->actionConcurso()
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#6 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): UsrUsuariosController->runAction()
+#7 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#8 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#9 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): UsrUsuariosController->filterAccessControl()
+#10 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#11 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#12 C:\xampp\htdocs\yii\framework\web\CController.php(265): UsrUsuariosController->runActionWithFilters()
+#13 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): UsrUsuariosController->run()
+#14 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#15 C:\xampp\htdocs\yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#16 C:\xampp\htdocs\wwwCanada2017\index.php(13): CWebApplication->run()
+REQUEST_URI=/wwwCanada2017/usrUsuarios/concurso
+2017/06/20 11:37:47 [error] [php] Trying to get property of non-object (C:\xampp\htdocs\wwwCanada2017\protected\views\usrUsuarios\inscripcion.php:286)
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(869): UsrUsuariosController->renderFile()
+#1 C:\xampp\htdocs\yii\framework\web\CController.php(782): UsrUsuariosController->renderPartial()
+#2 C:\xampp\htdocs\wwwCanada2017\protected\controllers\UsrUsuariosController.php(446): UsrUsuariosController->render()
+#3 C:\xampp\htdocs\wwwCanada2017\protected\controllers\UsrUsuariosController.php(286): UsrUsuariosController->usuarioNoInscrito()
+#4 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): UsrUsuariosController->actionConcurso()
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#6 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): UsrUsuariosController->runAction()
+#7 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#8 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#9 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): UsrUsuariosController->filterAccessControl()
+#10 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#11 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#12 C:\xampp\htdocs\yii\framework\web\CController.php(265): UsrUsuariosController->runActionWithFilters()
+#13 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): UsrUsuariosController->run()
+#14 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#15 C:\xampp\htdocs\yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#16 C:\xampp\htdocs\wwwCanada2017\index.php(13): CWebApplication->run()
+REQUEST_URI=/wwwCanada2017/usrUsuarios/concurso
+2017/06/20 11:42:11 [error] [php] Trying to get property of non-object (C:\xampp\htdocs\wwwCanada2017\protected\views\usrUsuarios\inscripcion.php:286)
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(869): UsrUsuariosController->renderFile()
+#1 C:\xampp\htdocs\yii\framework\web\CController.php(782): UsrUsuariosController->renderPartial()
+#2 C:\xampp\htdocs\wwwCanada2017\protected\controllers\UsrUsuariosController.php(446): UsrUsuariosController->render()
+#3 C:\xampp\htdocs\wwwCanada2017\protected\controllers\UsrUsuariosController.php(286): UsrUsuariosController->usuarioNoInscrito()
+#4 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): UsrUsuariosController->actionConcurso()
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#6 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): UsrUsuariosController->runAction()
+#7 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#8 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#9 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): UsrUsuariosController->filterAccessControl()
+#10 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#11 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#12 C:\xampp\htdocs\yii\framework\web\CController.php(265): UsrUsuariosController->runActionWithFilters()
+#13 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): UsrUsuariosController->run()
+#14 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#15 C:\xampp\htdocs\yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#16 C:\xampp\htdocs\wwwCanada2017\index.php(13): CWebApplication->run()
+REQUEST_URI=/wwwCanada2017/usrUsuarios/concurso
+2017/06/20 11:42:42 [error] [php] Trying to get property of non-object (C:\xampp\htdocs\wwwCanada2017\protected\views\usrUsuarios\inscripcion.php:286)
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(869): UsrUsuariosController->renderFile()
+#1 C:\xampp\htdocs\yii\framework\web\CController.php(782): UsrUsuariosController->renderPartial()
+#2 C:\xampp\htdocs\wwwCanada2017\protected\controllers\UsrUsuariosController.php(446): UsrUsuariosController->render()
+#3 C:\xampp\htdocs\wwwCanada2017\protected\controllers\UsrUsuariosController.php(286): UsrUsuariosController->usuarioNoInscrito()
+#4 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): UsrUsuariosController->actionConcurso()
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#6 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): UsrUsuariosController->runAction()
+#7 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#8 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#9 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): UsrUsuariosController->filterAccessControl()
+#10 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#11 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#12 C:\xampp\htdocs\yii\framework\web\CController.php(265): UsrUsuariosController->runActionWithFilters()
+#13 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): UsrUsuariosController->run()
+#14 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#15 C:\xampp\htdocs\yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#16 C:\xampp\htdocs\wwwCanada2017\index.php(13): CWebApplication->run()
+REQUEST_URI=/wwwCanada2017/usrUsuarios/concurso
+2017/06/20 11:42:52 [error] [php] Trying to get property of non-object (C:\xampp\htdocs\wwwCanada2017\protected\views\usrUsuarios\inscripcion.php:286)
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(869): UsrUsuariosController->renderFile()
+#1 C:\xampp\htdocs\yii\framework\web\CController.php(782): UsrUsuariosController->renderPartial()
+#2 C:\xampp\htdocs\wwwCanada2017\protected\controllers\UsrUsuariosController.php(446): UsrUsuariosController->render()
+#3 C:\xampp\htdocs\wwwCanada2017\protected\controllers\UsrUsuariosController.php(286): UsrUsuariosController->usuarioNoInscrito()
+#4 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): UsrUsuariosController->actionConcurso()
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#6 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): UsrUsuariosController->runAction()
+#7 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#8 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#9 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): UsrUsuariosController->filterAccessControl()
+#10 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#11 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#12 C:\xampp\htdocs\yii\framework\web\CController.php(265): UsrUsuariosController->runActionWithFilters()
+#13 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): UsrUsuariosController->run()
+#14 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#15 C:\xampp\htdocs\yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#16 C:\xampp\htdocs\wwwCanada2017\index.php(13): CWebApplication->run()
+REQUEST_URI=/wwwCanada2017/usrUsuarios/concurso
+2017/06/20 11:43:03 [error] [php] Trying to get property of non-object (C:\xampp\htdocs\wwwCanada2017\protected\views\usrUsuarios\inscripcion.php:286)
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(869): UsrUsuariosController->renderFile()
+#1 C:\xampp\htdocs\yii\framework\web\CController.php(782): UsrUsuariosController->renderPartial()
+#2 C:\xampp\htdocs\wwwCanada2017\protected\controllers\UsrUsuariosController.php(446): UsrUsuariosController->render()
+#3 C:\xampp\htdocs\wwwCanada2017\protected\controllers\UsrUsuariosController.php(286): UsrUsuariosController->usuarioNoInscrito()
+#4 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): UsrUsuariosController->actionConcurso()
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#6 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): UsrUsuariosController->runAction()
+#7 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#8 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#9 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): UsrUsuariosController->filterAccessControl()
+#10 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#11 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#12 C:\xampp\htdocs\yii\framework\web\CController.php(265): UsrUsuariosController->runActionWithFilters()
+#13 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): UsrUsuariosController->run()
+#14 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#15 C:\xampp\htdocs\yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#16 C:\xampp\htdocs\wwwCanada2017\index.php(13): CWebApplication->run()
+REQUEST_URI=/wwwCanada2017/usrUsuarios/concurso
+2017/06/20 11:43:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/jquery.min.map".' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('js/jquery.min.m...')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\wwwCanada2017\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/wwwCanada2017/js/jquery.min.map
+---
+2017/06/20 11:43:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/2gomDark/css/bootstrap.min.css.map".' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/2gomDark...')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\wwwCanada2017\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/wwwCanada2017/themes/2gomDark/css/bootstrap.min.css.map
+---
+2017/06/20 11:47:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/2gomDark/css/bootstrap.min.css.map".' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/2gomDark...')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\wwwCanada2017\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/wwwCanada2017/themes/2gomDark/css/bootstrap.min.css.map
+---
+2017/06/20 11:47:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/jquery.min.map".' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('js/jquery.min.m...')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\wwwCanada2017\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/wwwCanada2017/js/jquery.min.map
+---
+2017/06/20 11:47:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/2gomDark/js/toastr.js.map".' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/2gomDark...')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\wwwCanada2017\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/wwwCanada2017/themes/2gomDark/js/toastr.js.map
+---
+2017/06/20 11:52:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/2gomDark/css/bootstrap.min.css.map".' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/2gomDark...')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\wwwCanada2017\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/wwwCanada2017/themes/2gomDark/css/bootstrap.min.css.map
+---
+2017/06/20 11:52:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/jquery.min.map".' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('js/jquery.min.m...')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\wwwCanada2017\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/wwwCanada2017/js/jquery.min.map
+---
+2017/06/20 11:52:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "themes/2gomDark/js/toastr.js.map".' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/2gomDark...')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\wwwCanada2017\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/wwwCanada2017/themes/2gomDark/js/toastr.js.map
+---
