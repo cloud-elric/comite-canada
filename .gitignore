@@ -45,3 +45,7 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+canada-admin-panel/protected/config/*
+canada-community/protected/config/*
+canada-judging-panel/protected/config/*
