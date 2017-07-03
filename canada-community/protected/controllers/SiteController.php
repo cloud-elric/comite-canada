@@ -349,5 +349,5 @@ class SiteController extends Controller {
 	public function actionTest2(){
 		echo Yii::app()->language();
 		exit;
-	} 
+	}
 }
