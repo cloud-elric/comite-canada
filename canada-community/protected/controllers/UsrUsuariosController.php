@@ -241,15 +241,21 @@ class UsrUsuariosController extends Controller {
 						} else {
 							$transaction->rollback ();
 						}
-						// Preparamos los datos para enviar el correo
-						$view = "_activacionEmail";
-						$data ["usuario"] = $competidor;
-						$data ["token"] = $competidor->txt_usuario_number;
-						$data ["t"] = $t;
-						//$this->loginCompetidor ( $competidor, $concurso );
+						//Guardar datos en tabla de activacion
+						$activar = new ActivarUsuario();
+						$activar->id_usuario = $competidor->id_usuario;
+						$activar->id_contest = $concurso->id_contest;
+						$activar->txt_token = "act_" . md5 ( uniqid ( "act_" ) ) . uniqid ();;
 						
-						$this->sendEmail2( "Correo de activacion de cuenta", $view, $data, $competidor );
-						Yii::app ()->user->setFlash ( 'success', "Te hemos enviado un correo" );
+						if($activar->save()){
+							// Preparamos los datos para enviar el correo
+							$view = "_activacionEmail";
+							$data ["token"] = $activar->txt_token;
+							//$this->loginCompetidor ( $competidor, $concurso );
+							
+							$this->sendEmail2( "Correo de activacion de cuenta", $view, $data, $competidor );
+							Yii::app ()->user->setFlash ( 'success', "Te hemos enviado un correo" );
+						}
 					}
 					// Si existe un error realizamos un rollback
 				} catch ( ErrorException $e ) {

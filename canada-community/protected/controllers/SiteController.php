@@ -351,16 +351,32 @@ class SiteController extends Controller {
 		exit;
 	}
 
-	public function actionActivateAccount($token = null, $t = null){
-		// Buscamos el concurso
-		$concurso = $this->validarToken ( $t );
-		$user = UsrUsuarios::model()->find(array(
-			'condition' => 'txt_usuario_number=:txtToken',
+	public function actionActivateAccount($token = null){
+		//Buscar token en tabla activar_usuario
+		$activacion = ActivarUsuario::model()->find(array(
+			'condition' => 'txt_token=:idToken',
 			'params' => array(
-				":txtToken" => $token,
+				':idToken' => $token
 			)
 		));
-		
+		// Buscamos el concurso
+		$concurso = ConContests::model()->find(array(
+			'condition' => 'id_contest=:idCon',
+			'params' => array(
+				':idCon' => $activacion->id_contest
+			)
+		));
+
+		$user = UsrUsuarios::model()->find(array(
+			'condition' => 'id_usuario=:idUser',
+			'params' => array(
+				":idUser" => $activacion->id_usuario,
+			)
+		));
+		$fecha_actual=date("Y-m-d H:m:s");
+		$activacion->fch_activacion = $fecha_actual;
+		$activacion->save();
+
 		if($user && $concurso){
 			$this->loginCompetidor( $user, $concurso );
 		}else{

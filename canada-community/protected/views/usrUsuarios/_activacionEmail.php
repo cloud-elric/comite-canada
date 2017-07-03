@@ -37,13 +37,13 @@
 												<br>Se ha recibido una solicitud para cambiar su contraseña para la plataforma Haz Clic con México,
 																en caso de que la haya solicitado puede modificar su contraseña en la
 													siguiente <a
-														href="<?php echo Yii::app()->createAbsoluteUrl('site/activateAccount', array("token"=>$data["token"], "t"=>$data["t"]));?>">
+														href="<?php echo Yii::app()->createAbsoluteUrl('site/activateAccount', array("token"=>$data["token"]));?>">
 														liga</a>:<br>
 												<br>
 												<center>
 														<a
 															style="border-radius: 3px; font-size: 15px; color: white; border: 1px #1373b5 solid; box-shadow: inset 0 1px 0 #6db3e6, inset 1px 0 0 #48a1e2; text-decoration: none; padding: 14px 7px 14px 7px; width: 210px; max-width: 210px; font-family: proxima_nova, 'Open Sans', 'lucida grande', 'Segoe UI', arial, verdana, 'lucida sans unicode', tahoma, sans-serif; display: block; background-color: #007ee6; text-align: center;"
-															href="<?php echo Yii::app()->createAbsoluteUrl('site/activateAccount', array("token"=>$data["token"], "t"=>$data["t"]));?>"
+															href="<?php echo Yii::app()->createAbsoluteUrl('site/activateAccount', array("token"=>$data["token"]));?>"
 															target="_blank">Activar cuenta</a>
 													</center> <br>Si no quiere cambiar su contraseña o no solicitó el cambio, solo
 			ignore y borre este correo.<br>
