@@ -238,7 +238,16 @@ class UsrUsuariosController extends Controller {
 							}
 							$transaction->commit ();
 							
-							$this->loginCompetidor ( $competidor, $concurso );
+							// Preparamos los datos para enviar el correo
+							$view = "_activacionEmail";
+							$data ["usuario"] = $competidor;
+							$data ["token"] = $competidor->txt_usuario_number;
+							$data ["t"] = $t;
+							//$this->loginCompetidor ( $competidor, $concurso );
+						
+							$this->sendEmail ( "Correo de activacion de cuenta", $view, $data, $usuario );
+							Yii::app ()->user->setFlash ( 'success', "Te hemos enviado un correo" );
+
 						} else {
 							$transaction->rollback ();
 						}
@@ -259,6 +268,37 @@ class UsrUsuariosController extends Controller {
 				"t" => $t,
 				"errorMessage" => $errorMessage 
 		) );
+	}
+
+	/**
+	 * Envia correo
+	 *
+	 * @param unknown $view        	
+	 * @param unknown $data        	
+	 * @param unknown $usuario        	
+	 */
+	public function sendEmail($asunto, $view, $data, $usuario) {
+		$template = $this->generateTemplateRecoveryPass ( $view, $data );
+		$sendEmail = new SendEMail ();
+		$sendEmail->SendMailPass ( $asunto, $usuario->txt_correo, $usuario->txt_nombre . " " . $usuario->txt_apellido_paterno, $template );
+	}
+
+	public function actionActivateAccount($token = null, $t = null){
+		// Buscamos el concurso
+		$concurso = $this->validarToken ( $t );
+
+		if($token){
+			$user = UsrUsuarios::model()->find(array(
+				'condition' => 'txt_usuario_number=:txtToken',
+				'params' => array(
+					":txtToken" => $token,
+				)
+			));
+
+			$this->loginCompetidor ( $user, $concurso );
+		}else{
+
+		}
 	}
 	
 	/**
@@ -331,9 +371,9 @@ class UsrUsuariosController extends Controller {
 		$numberFotosCompradas = $concursoDatos->num_fotos_permitidas;
 		
 		// Buscamos las fotos del competidor
-		$fotosCompetidor = WrkPics::model ()->findAll ( array (
+		$fotosCompetidor = WrkPics::model ()->findAll ( array(
 				"condition" => "ID=:idUsuario AND id_contest=:idConcurso",
-				"params" => array (
+				"params" => array(
 						":idUsuario" => $idUsuario,
 						":idConcurso" => $idConcurso 
 				) 
