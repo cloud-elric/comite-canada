@@ -20,8 +20,8 @@ if ($debug) {
 					"serverSMTP" => 's210.tmd.cloud',
 					"secure" => 'tls',
 					"port" => 465,
-					"userName" => 'development@2gom.com.mx',
-					"password" => 'm0nk3yD3v!' 
+					"userName" => '',
+					"password" => '' 
 			),
 			// Configuración para facebook
 			'Facebook' => array (
