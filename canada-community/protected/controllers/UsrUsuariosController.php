@@ -31,7 +31,7 @@ class UsrUsuariosController extends Controller {
 						'actions' => array (
 								'registrar',
 								'iPNPayPal',
-								'callbackFacebook' 
+								'callbackFacebook'
 						),
 						'users' => array (
 								'*' 
@@ -55,7 +55,7 @@ class UsrUsuariosController extends Controller {
 								'necesitoAyuda',
 								'sendReport',
 								'checkOut',
-								'test' 
+								'test'
 						),
 						'users' => array (
 								'@' 
@@ -237,20 +237,19 @@ class UsrUsuariosController extends Controller {
 								$this->guardarImagenCompetidor ( $competidor );
 							}
 							$transaction->commit ();
-							
-							// Preparamos los datos para enviar el correo
-							$view = "_activacionEmail";
-							$data ["usuario"] = $competidor;
-							$data ["token"] = $competidor->txt_usuario_number;
-							$data ["t"] = $t;
-							//$this->loginCompetidor ( $competidor, $concurso );
-						
-							$this->sendEmail ( "Correo de activacion de cuenta", $view, $data, $usuario );
-							Yii::app ()->user->setFlash ( 'success', "Te hemos enviado un correo" );
 
 						} else {
 							$transaction->rollback ();
 						}
+						// Preparamos los datos para enviar el correo
+						$view = "_activacionEmail";
+						$data ["usuario"] = $competidor;
+						$data ["token"] = $competidor->txt_usuario_number;
+						$data ["t"] = $t;
+						//$this->loginCompetidor ( $competidor, $concurso );
+						
+						$this->sendEmail2( "Correo de activacion de cuenta", $view, $data, $competidor );
+						Yii::app ()->user->setFlash ( 'success', "Te hemos enviado un correo" );
 					}
 					// Si existe un error realizamos un rollback
 				} catch ( ErrorException $e ) {
@@ -270,23 +269,30 @@ class UsrUsuariosController extends Controller {
 		) );
 	}
 
-	public function actionActivateAccount($token = null, $t = null){
+	public function sendEmail2($asunto, $view, $data, $usuario) {
+		$template = $this->generateTemplateRecoveryPass ( $view, $data );
+		$sendEmail = new SendEMail ();
+		$sendEmail->SendMailPass ( $asunto, $usuario->txt_correo, $usuario->txt_nombre . " " . $usuario->txt_apellido_paterno, $template );
+	}
+
+	/*public function actionActivateAccount($token = null, $t = null){
 		// Buscamos el concurso
 		$concurso = $this->validarToken ( $t );
-
-		if($token){
-			$user = UsrUsuarios::model()->find(array(
-				'condition' => 'txt_usuario_number=:txtToken',
-				'params' => array(
-					":txtToken" => $token,
-				)
-			));
-
-			$this->loginCompetidor ( $user, $concurso );
+		$user = UsrUsuarios::model()->find(array(
+			'condition' => 'txt_usuario_number=:txtToken',
+			'params' => array(
+				":txtToken" => $token,
+			)
+		));
+		var_dump($user);
+		var_dump($concurso);
+		exit();
+		if($user && $concurso){
+			$this->loginCompetidor( $user, $concurso );
 		}else{
-
+			exit;
 		}
-	}
+	}*/
 	
 	/**
 	 */

@@ -350,4 +350,61 @@ class SiteController extends Controller {
 		echo Yii::app()->language();
 		exit;
 	}
+
+	public function actionActivateAccount($token = null, $t = null){
+		// Buscamos el concurso
+		$concurso = $this->validarToken ( $t );
+		$user = UsrUsuarios::model()->find(array(
+			'condition' => 'txt_usuario_number=:txtToken',
+			'params' => array(
+				":txtToken" => $token,
+			)
+		));
+		
+		if($user && $concurso){
+			$this->loginCompetidor( $user, $concurso );
+		}else{
+			exit;
+		}
+	}
+
+	/**
+	 * Loguea al usuario despues de registrarse
+	 *
+	 * @param UsrUsuarios $competidor        	
+	 */
+	private function loginCompetidor($competidor, $concurso) {
+		$model = new LoginForm ();
+		$model->username = $competidor->txt_correo;
+		$model->password = $competidor->txt_password;
+		// validate user input and redirect to the previous page if valid
+		if ($model->validate () && $model->login ()) {
+			$this->crearSesionUsuarioConcurso ( $competidor->id_usuario, $concurso );
+			$this->redirect ( array('usrUsuarios/concurso') );
+			return;
+		}else{
+			
+			
+		}
+		
+		exit;
+	}
+
+	/**
+	 * Valida el token enviado
+	 *
+	 * @param unknown $token        	
+	 * @throws CHttpException
+	 */
+	public function validarToken($token) {
+		
+		// Buscamos el concurso mediante el token
+		$concurso = ConContests::buscarPorToken ( $token );
+		// Si no existe el concurso le mandamos error
+		if (empty ( $concurso )) {
+			throw new CHttpException ( 404, 'The requested page does not exist.' );
+		}
+		
+		return $concurso;
+	}
 }
