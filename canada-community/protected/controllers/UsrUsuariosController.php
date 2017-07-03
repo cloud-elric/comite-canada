@@ -270,19 +270,6 @@ class UsrUsuariosController extends Controller {
 		) );
 	}
 
-	/**
-	 * Envia correo
-	 *
-	 * @param unknown $view        	
-	 * @param unknown $data        	
-	 * @param unknown $usuario        	
-	 */
-	public function sendEmail($asunto, $view, $data, $usuario) {
-		$template = $this->generateTemplateRecoveryPass ( $view, $data );
-		$sendEmail = new SendEMail ();
-		$sendEmail->SendMailPass ( $asunto, $usuario->txt_correo, $usuario->txt_nombre . " " . $usuario->txt_apellido_paterno, $template );
-	}
-
 	public function actionActivateAccount($token = null, $t = null){
 		// Buscamos el concurso
 		$concurso = $this->validarToken ( $t );
