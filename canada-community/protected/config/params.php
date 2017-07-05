@@ -20,8 +20,8 @@ if ($debug) {
 					"serverSMTP" => 's210.tmd.cloud',
 					"secure" => 'tls',
 					"port" => 465,
-					"userName" => 'development@2gom.com.mx',
-					"password" => 'm0nk3yD3v!' 
+					"userName" => '',
+					"password" => '' 
 			),
 			// Configuración para facebook
 			'Facebook' => array (
@@ -59,11 +59,11 @@ if ($debug) {
 			// Configuracion para enviar correo
 			'SwifMailer' => array (
 					// "serverSMTP" => 'node01.tmdhosting710.com',
-					"serverSMTP" => 'us3.tmd.cloud',
-					"secure" => 'tls',
-					"port" => 465,
-					"userName" => 'support@globaljudging.com',
-					"password" => 'NouKJx3Hf' 
+					"serverSMTP" => 'us3..cloud',
+					"secure" => '',
+					"port" => 7,
+					"userName" => '',
+					"password" => '' 
 			),
 			// Configuración para facebook
 			'Facebook' => array (

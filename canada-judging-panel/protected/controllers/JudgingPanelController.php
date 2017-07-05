@@ -56,7 +56,10 @@ class JudgingPanelController extends Controller {
 								'test',
 								'concursos',
 								'feedbackReview',
-								'feedbackDashBoard'
+								'feedbackDashBoard',
+								'finalistas',
+								'finalistasByCategory',
+								'desempateFinalistas'
 						),
 						'users' => array (
 								'@' 
@@ -127,31 +130,17 @@ class JudgingPanelController extends Controller {
 		// Revisa si el juez finalizo su trabajo
 		$this->isJuezCompleted ( $idJuez, $concurso->id_contest, $t );
 		
-		$relJuezCategory = ConRelJuecesCategories::model()->findAll(array(
-			'condition' => 'id_juez=:idJuez',
-			'params' => array(
-				':idJuez' => $idJuez
-			)
-		));
-
-		$i = 0;
-		$idCat = [];
-		foreach($relJuezCategory as $rel){
-			$idCat[$i] = $rel->id_category;
-			$i++;
-		}
-
-		$criteria = new CDbCriteria();
-		$criteria->condition = "id_juez=:idJuez AND id_contest=:idContest";
-		$criteria->params = array (
-			":idJuez" => $idJuez,
-			":idContest" => $concurso->id_contest,
-		);
-		$criteria->addInCondition("id_Category", $idCat);
-
 		// Obtenemos el avance del juez
-		$avance = ViewAvanceTotalJuez::model ()->findAll ( $criteria );
+		$avance = ViewAvanceTotalJuez::model ()->findAll ( array (
+				"condition" => "id_juez=:idJuez AND id_contest=:idContest",
+				"params" => array (
+						":idJuez" => $idJuez,
+						":idContest" => $concurso->id_contest 
+				) 
+		) );
 
+		
+		
 		$this->layout = "column5";
 		
 		$cargarScripts = new CargarScripts ();
@@ -333,6 +322,21 @@ class JudgingPanelController extends Controller {
 			if (isset ( $_POST ["b_mencion"] )) {
 				$bMencion = $_POST ["b_mencion"];
 			}
+
+			$photoWrk = WrkPics::model ()->find (array(
+				'condition' => 'id_pic=:idPic and id_contest=:idContest and b_status=:tipoStatus',
+				'params' => array(
+				
+					":idContest" => $concurso->id_contest,
+					':idPic' => $photoCalificar->id_pic,
+					':tipoStatus' => 2
+				)
+			));
+
+			if(!$photoWrk->b_mencion){
+				$photoWrk->b_mencion = $bMencion;
+			}
+			$photoWrk->save();
 			
 			// Suguieren otra categoria
 			if (empty ( $photoCalificar->id_category )) {
@@ -889,13 +893,15 @@ class JudgingPanelController extends Controller {
 		
 		$existEmpate = Yii::app()->db->createCommand()
 		->from('2gom_view_calificacion_final')
-		->where('b_empate=1 and id_contest = '.$concurso->id_contest.'
+		->where('b_empate_alterno=1 and id_contest = '.$concurso->id_contest.'
 AND id_pic NOT IN (SELECT id_pic FROM 2gom_con_calificaciones_desempate WHERE id_juez=:idJuez)', array(':idJuez'=>$idJuez))
 		->queryAll();
 		
 		if(count($existEmpate)==0){
 			
-			$this->redirect(array('feedbackDashBoard', 't'=>$t));
+			$this->redirect(array('finalistas', 't'=>$t));
+
+			//$this->redirect(array('feedbackDashBoard', 't'=>$t));
 			return;
 		}
 		
@@ -907,9 +913,141 @@ AND id_pic NOT IN (SELECT id_pic FROM 2gom_con_calificaciones_desempate WHERE id
 		$categorias = Categoiries::model ()->findAll ( 'id_contest='.$concurso->id_contest );
 		$this->render ( 'tieBreakerPanel', array (
 				"categorias" => $categorias ,
-				't'=>$t
+				't'=>$t,
+				'concurso'=>$concurso
 				
 		) );
+	}
+
+	public function actionFinalistas($t=''){
+		$this->layout = "column5";
+		$this->title = "Dashboard3";
+		
+		$idJuez = Yii::app ()->user->juezLogueado->id_juez;
+			$concurso = $this->existeConcurso ( $t );
+		
+		$cargarScripts = new CargarScripts ();
+		$cargarScripts->getScripts ( array (
+				"c_geek" 
+		), "css" );
+		
+		$categorias = Categoiries::model ()->findAll ( 'id_contest='.$concurso->id_contest );
+		$this->render ( 'finalists', array (
+				"categorias" => $categorias ,
+				't'=>$t,
+				'concurso'=>$concurso
+				
+		) );
+
+	}
+
+
+	public function actionFinalistasByCategory($id, $t=null){
+		$this->layout = "column12";
+		$this->title = "Finalists Round";
+		$cargarScripts = new CargarScripts ();
+		$cargarScripts->getScripts ( array (
+				"c_asPieProgress",
+				"c_pie_progress",
+				"c_geek" 
+		), "css" );
+		
+		$cargarScripts->getScripts ( array (
+				"j_jquery_asPieProgress",
+				"j_aspieprogress",
+				"j_pie_progress",
+				"j_raty" 
+		), "js" );
+		
+		$categoria = Categoiries::model ()->find ( array (
+				"condition" => "b_enabled=1 AND id_category=:idCategory",
+				"params" => array (
+						":idCategory" => $id 
+				),
+				"order" => "txt_name" 
+		) );
+
+		$concurso = $this->existeConcurso ( $t );
+		
+		$numeroLugares = 10;
+		$idJuez = Yii::app ()->user->juezLogueado->id_juez;
+		
+		$finalistas = ViewCalificacionFinal::model ()->findAll ( array (
+			"condition" => "b_status=2 AND b_calificada = 1 AND id_category=:idCategoria",
+			"params" => array (
+					":idCategoria" => $categoria->id_category 
+			),
+			"limit"=>$numeroLugares,
+			"order" => "num_calificacion_nueva DESC, num_calificacion_desempate DESC",
+	) );
+
+		$this->render ( 'finalistsByCategory', array (
+				"numLugares" => $numeroLugares,
+				"categoria" => $categoria,
+				'finalistas'=>$finalistas,
+				't'=>$t
+		) );
+	}
+
+	/**
+	 * Action para desempatar fotos calificando con estrellas
+	 */
+	public function actionDesempateFinalistas($t=null) {
+
+		$idJuez = Yii::app ()->user->juezLogueado->id_juez;
+		if (isset ( $_POST ["CalificacionesDesempate"] )) {
+			$calificaciones = $_POST ["CalificacionesDesempate"];
+			$calificacionesGuardar = array ();
+			$validar = true;
+			
+			foreach ( $calificaciones as $calificacion ) {
+				$model = new CalificacionesFinalistas ();
+				
+				$model->attributes = $calificacion;
+				$model->id_juez = $idJuez;
+				
+				$concurso = $this->existeConcurso ( $t );
+				$model->id_contest = $concurso->id_contest;
+				
+				$isPicCalificada = CalificacionesFinalistas::model ()->find ( array (
+						"condition" => "id_pic=:idPic AND id_juez=:idJuez",
+						"params" => array (
+								":idPic" => $model->id_pic,
+								":idJuez" => $idJuez 
+						) 
+				) );
+				if (empty ( $isPicCalificada )) {
+					if ($model->validate ()) {
+						$calificacionesGuardar [] = $model;
+					} else {
+						
+						$validar = false;
+						$calificacionesGuardar = array ();
+						break;
+					}
+				} else {
+					
+					echo "error";
+					$validar = false;
+					break;
+				}
+			}
+			
+			if (! $validar) {
+				echo "error";
+				return;
+			}
+			
+			if (count ( $calificacionesGuardar ) > 0) {
+				
+				foreach ( $calificacionesGuardar as $calificacionGuardar ) {
+					
+					$calificacionGuardar->save ();
+				}
+			}
+			
+			echo "success";
+		}
 	}
 
 	/**
@@ -1050,13 +1188,13 @@ AND id_pic NOT IN (SELECT id_pic FROM 2gom_con_calificaciones_desempate WHERE id
 		) );
 		
 		if($porcentajeJuez){
-			/*if ($porcentajeJuez->num_total == 100) {
-				$this->layout = "column5";
-				$this->redirect ( array (
-						"judgingPanel/categoriaFinalizada", 'token'=>$t
-				) );
-				exit ();
-			}*/
+		if ($porcentajeJuez->num_total == 100) {
+			$this->layout = "column5";
+			$this->redirect ( array (
+					"judgingPanel/categoriaFinalizada", 'token'=>$t
+			) );
+			exit ();
+		}
 		}
 	}
 	
@@ -1087,40 +1225,44 @@ AND id_pic NOT IN (SELECT id_pic FROM 2gom_con_calificaciones_desempate WHERE id
 				),
 				"order" => "txt_name" 
 		) );
+
+		$concurso = $this->existeConcurso ( $t );
 		
 		$numeroLugares = 3;
 		$idJuez = Yii::app ()->user->juezLogueado->id_juez;
 		
 		$c = new CDbCriteria ();
 		$c->alias = 'CF';
-		$c->condition = 'CF.id_category =:idCategoria  AND CF.b_empate = 1 AND CF.b_calificada_desempate=0 AND CF.id_pic NOT IN (SELECT id_pic FROM 2gom_con_calificaciones_desempate WHERE id_juez=:idJuez)';
-		$c->join = 'INNER JOIN (SELECT DISTINCT F.num_calificacion
+		$c->condition = 'CF.id_category =:idCategoria  AND CF.b_empate_alterno = 1 AND CF.b_calificada_desempate=0 AND CF.id_pic NOT IN (SELECT id_pic FROM 2gom_con_calificaciones_desempate WHERE id_juez=:idJuez) and id_contest=:idContest';
+		$c->join = 'INNER JOIN (SELECT DISTINCT F.num_calificacion_nueva
 						FROM 2gom_view_calificacion_final F
 						WHERE F.id_category=:idCategoria
-						order by F.num_calificacion DESC
+						order by F.num_calificacion_nueva DESC
 						LIMIT 10
-						) AS W ON W.num_calificacion = CF.num_calificacion';
+						) AS W ON W.num_calificacion_nueva = CF.num_calificacion_nueva';
 		$c->params = array (
 				':idCategoria' => $categoria->id_category,
-				':idJuez' => $idJuez 
+				':idJuez' => $idJuez,
+				':idContest'=>$concurso->id_contest 
 		);
-		$c->order = 'CF.num_calificacion DESC, CF.b_calificada_desempate DESC';
+		$c->order = 'CF.num_calificacion_nueva DESC, CF.b_calificada_desempate DESC';
 		
 		$lugares = ViewCalificacionFinal::model ()->findAll ( $c );
 		
 		// Contamos cuantos valores hay
 		$valoresEmpatados = array ();
 		foreach ( $lugares as $lugar ) {
-			$valoresEmpatados [] = $lugar->num_calificacion;
+			$valoresEmpatados [] = intval($lugar->num_calificacion_nueva);
 		}
 		
 		$countCalificaciones = array_count_values ( $valoresEmpatados );
 		
-		$lugaresCategoria = Yii::app ()->db->createCommand ()->selectDistinct ( 'F.num_calificacion' )
+		$lugaresCategoria = Yii::app ()->db->createCommand ()->selectDistinct ( 'F.num_calificacion_nueva' )
 		->from ( '2gom_view_calificacion_final F' )
 		->where ( 'F.id_category=:idCategoria', array (':idCategoria' => $id 
-		) )->order('F.num_calificacion DESC')->limit(10)->queryAll ();
+		) )->order('F.num_calificacion_nueva DESC')->limit(10)->queryAll ();
 		
+
 		$this->render ( 'breakerRoundByCategory', array (
 				"lugares" => $lugares,
 				"categoria" => $categoria,
@@ -1133,7 +1275,7 @@ AND id_pic NOT IN (SELECT id_pic FROM 2gom_con_calificaciones_desempate WHERE id
 	/**
 	 * Action para desempatar fotos calificando con estrellas
 	 */
-	public function actionDesempate() {
+	public function actionDesempate($t=null) {
 		$idJuez = Yii::app ()->user->juezLogueado->id_juez;
 		if (isset ( $_POST ["CalificacionesDesempate"] )) {
 			$calificaciones = $_POST ["CalificacionesDesempate"];
@@ -1146,11 +1288,8 @@ AND id_pic NOT IN (SELECT id_pic FROM 2gom_con_calificaciones_desempate WHERE id
 				$model->attributes = $calificacion;
 				$model->id_juez = $idJuez;
 				
-				/**
-				 *
-				 * @todo poner el concurso actual
-				 */
-				$model->id_contest = 1;
+				$concurso = $this->existeConcurso ( $t );
+				$model->id_contest = $concurso->id_contest;
 				
 				$isPicCalificada = CalificacionesDesempate::model ()->find ( array (
 						"condition" => "id_pic=:idPic AND id_juez=:idJuez",
@@ -1163,6 +1302,7 @@ AND id_pic NOT IN (SELECT id_pic FROM 2gom_con_calificaciones_desempate WHERE id
 					if ($model->validate ()) {
 						$calificacionesGuardar [] = $model;
 					} else {
+						
 						$validar = false;
 						$calificacionesGuardar = array ();
 						break;
