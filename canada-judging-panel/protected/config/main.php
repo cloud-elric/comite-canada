@@ -8,7 +8,8 @@
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Photo Judging',
-	'language'=>"es",
+	'sourceLanguage'=>'es',
+	'language' => 'en_us',
 	'theme'=>'2gomDark',
 	'defaultController'=>'login/index',	
 
