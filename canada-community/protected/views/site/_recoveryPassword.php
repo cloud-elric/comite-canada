@@ -20,7 +20,7 @@
 								<td width="100%" style="font-size: 0px;" align="center"
 									height="1"><img width="40px"
 									style="max-height: 73px; width: 40px;" alt=""
-									src="https://globaljudging.com/community/images/hardcode/WPC-Logo.png"></td>
+									src="<?php echo Yii::app()->createAbsoluteUrl('', array());?>/images/hardcode/WPC-Logo.png"></td>
 							</tr>
 							<tr>
 								<td><table cellpadding="0" cellspacing="0"
@@ -68,7 +68,7 @@
 											<tr
 												style="color: #a8b9c6; font-size: 11px; font-family: proxima_nova, 'Open Sans', 'Lucida Grande', 'Segoe UI', Arial, Verdana, 'Lucida Sans Unicode', Tahoma, 'Sans Serif';">
 												<td width="400" align="left"></td>
-												<td width="128" align="right">© <?php echo date("Y"); ?> Global judging</td>
+												<td width="128" align="right">© <?php echo date("Y"); ?> Global judging </td>
 											</tr>
 										</tbody>
 									</table></td>
