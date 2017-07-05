@@ -20,7 +20,7 @@
 								<td width="100%" style="font-size: 0px;" align="center"
 									height="1"><img width="40px"
 									style="max-height: 73px; width: 40px;" alt=""
-									src="https://comitefotomx.com/wp-content/uploads/2016/04/CFM_Imagotipo-NEG-CUAD-150x150.png"></td>
+									src="<?php echo Yii::app()->createAbsoluteUrl('', array());?>/images/hardcode/WPC-Logo.png"></td>
 							</tr>
 							<tr>
 								<td><table cellpadding="0" cellspacing="0"
@@ -33,21 +33,18 @@
 												<td width="36"></td>
 												<td width="454" align="left"
 													style="color: #444444; border-collapse: collapse; font-size: 11pt; font-family: proxima_nova, 'Open Sans', 'Lucida Grande', 'Segoe UI', Arial, Verdana, 'Lucida Sans Unicode', Tahoma, 'Sans Serif'; max-width: 454px;"
-													valign="top">Estimado Usuario,<br>
-												<br>Se ha recibido una solicitud para cambiar su contraseña para la plataforma Haz Clic con México,
-																en caso de que la haya solicitado puede modificar su contraseña en la
-													siguiente <a
+													valign="top">Welcome <?=$competidor->txt_nombre?> <?=$competidor->txt_apellido_paterno?>,<br>
+												<br>For active your acount click the next <a
 														href="<?php echo Yii::app()->createAbsoluteUrl('usrUsuario/activateAccount', array("token"=>$data["token"], "t"=>$data["t"]));?>">
-														liga</a>:<br>
+														link</a>:<br>
 												<br>
 												<center>
 														<a
 															style="border-radius: 3px; font-size: 15px; color: white; border: 1px #1373b5 solid; box-shadow: inset 0 1px 0 #6db3e6, inset 1px 0 0 #48a1e2; text-decoration: none; padding: 14px 7px 14px 7px; width: 210px; max-width: 210px; font-family: proxima_nova, 'Open Sans', 'lucida grande', 'Segoe UI', arial, verdana, 'lucida sans unicode', tahoma, sans-serif; display: block; background-color: #007ee6; text-align: center;"
 															href="<?php echo Yii::app()->createAbsoluteUrl('usrUsuario/activateAccount', array("token"=>$data["token"], "t"=>$data["t"]));?>"
-															target="_blank">Cambiar contraseña</a>
-													</center> <br>Si no quiere cambiar su contraseña o no solicitó el cambio, solo
-			ignore y borre este correo.<br>
-												<br>Gracias!<br>- El equipo de Haz Clic con México.
+															target="_blank">Active account</a>
+													</center> 
+												<br>Thanks!<br>- Team Global judgin.
 												</td>
 												<td width="36"></td>
 											</tr>

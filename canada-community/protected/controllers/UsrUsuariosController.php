@@ -246,7 +246,9 @@ class UsrUsuariosController extends Controller {
 							//$this->loginCompetidor ( $competidor, $concurso );
 						
 							$this->sendEmail ( "Correo de activacion de cuenta", $view, $data, $usuario );
-							Yii::app ()->user->setFlash ( 'success', "Te hemos enviado un correo" );
+							Yii::app ()->user->setFlash ( 'success', "Te hemos enviado un correo a:".$competidor->txt_correo );
+
+							$this->redirect ( Yii::app ()->homeUrl );
 
 						} else {
 							$transaction->rollback ();
