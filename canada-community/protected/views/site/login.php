@@ -83,6 +83,8 @@ $cs->registerScriptFile ( Yii::app ()->request->baseUrl . "/js/facebook/fb.js" )
 					
 					<?= CHtml::link(Yii::t('login','olvidePass'), array("site/requestPassword/t/".$concurso->txt_token), array("class"=>"olvide"))?>
 
+					<?= CHtml::link('Reenviar correo de activacion', array("site/reenviarActivacion/t/".$concurso->txt_token), array("class"=>"olvide"))?>
+
 					<!-- <a class="necesito" href="">Necesito una cuenta</a> -->
 					<?php # CHtml::link(Yii::t('login', 'necesitarCuenta'), array("usrUsuarios/registrar/t/".$concurso->txt_token), array("class"=>"necesito")); ?>
 
