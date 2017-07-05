@@ -2,7 +2,15 @@
 $places = array (
 		"1st place",
 		"2nd place",
-		"3rd place" 
+		"3rd place",
+		"4th place",
+		"5th place",
+		"6th place",
+		"7th place",
+		"8th place",
+		"9th place",
+		"10th place"
+
 );
 
 $bloques = 1;
@@ -116,11 +124,11 @@ foreach ( $countCalificaciones as $key => $empatadas ) {
 		$isPintadoLugar = true;
 		foreach ( $lugares as $lugar ) {
 			
-			if ($key == $lugar->num_calificacion) {
+			if ($key == intval($lugar->num_calificacion_nueva)) {
 				
 				foreach($lugaresCategoria as $llave=>$value){
 					
-					if($value['num_calificacion']==$lugar->num_calificacion){
+					if($value['num_calificacion_nueva']==intval($lugar->num_calificacion_nueva)){
 						$lugarPintarNumero = $llave;
 					}
 				}
@@ -285,7 +293,7 @@ $(document).ready(function(){
 	 	l.start();
 		var data = $("#formStars' . $key . '").serialize();
 		$.ajax({
-			url: "'. Yii::app()->controller->createUrl("desempate") .'",
+			url: "'. Yii::app()->controller->createUrl("desempate") .'?t='.$t.'",
 			data:data,
 			type:"POST",
 			success:function(response){

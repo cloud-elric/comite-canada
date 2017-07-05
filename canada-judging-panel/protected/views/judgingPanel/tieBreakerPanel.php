@@ -11,7 +11,7 @@
 			
 			$c = new CDbCriteria ();
 			$c->alias = 'CF';
-			$c->condition = 'CF.id_category =:idCategoria  AND CF.b_empate = 1 AND CF.b_calificada_desempate=0 AND CF.id_pic NOT IN (SELECT id_pic FROM 2gom_con_calificaciones_desempate WHERE id_juez=:idJuez)';
+			$c->condition = 'CF.id_category =:idCategoria  AND CF.b_empate_alterno = 1 AND CF.b_calificada_desempate=0 AND CF.id_pic NOT IN (SELECT id_pic FROM 2gom_con_calificaciones_desempate WHERE id_juez=:idJuez) AND id_contest=:idContest';
 			$c->join = 'INNER JOIN (SELECT DISTINCT F.num_calificacion
 						FROM 2gom_view_calificacion_final F
 						WHERE F.id_category=:idCategoria
@@ -20,7 +20,8 @@
 						) AS W ON W.num_calificacion = CF.num_calificacion';
 			$c->params = array (
 					':idCategoria' => $categoria->id_category,
-					':idJuez' => $idJuez 
+					':idJuez' => $idJuez,
+					':idContest' =>$concurso->id_contest
 			);
 			
 			$fotosEmpatadas = ViewCalificacionFinal::model ()->findAll ( $c);

@@ -4,7 +4,7 @@
  * This is the model class for table "2gom_calificaciones_desempate".
  *
  * The followings are the available columns in table '2gom_calificaciones_desempate':
- * @property string $id_calificacion_desempate
+ * @property string $id_calificacion_finalista
  * @property string $id_pic
  * @property string $id_contest
  * @property string $id_juez
@@ -15,7 +15,7 @@
  * @property 2gomContests $idContest
  * @property 2gomEntJueces $idJuez
  */
-class CalificacionesDesempate extends CActiveRecord
+class CalificacionesFinalistas extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
@@ -61,7 +61,7 @@ class CalificacionesDesempate extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_calificacion_desempate' => 'Id Calificacion Desempate',
+			'id_calificacion_finalista' => 'Id Calificacion Desempate',
 			'id_pic' => 'Id Pic',
 			'id_contest' => 'Id Contest',
 			'id_juez' => 'Id Juez',
@@ -87,7 +87,7 @@ class CalificacionesDesempate extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id_calificacion_final',$this->id_calificacion_desempate,true);
+		$criteria->compare('id_calificacion_desempate',$this->id_calificacion_desempate,true);
 		$criteria->compare('id_pic',$this->id_pic,true);
 		$criteria->compare('id_contest',$this->id_contest,true);
 		$criteria->compare('id_juez',$this->id_juez,true);
