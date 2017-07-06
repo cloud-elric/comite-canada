@@ -14,6 +14,16 @@ class UserIdentity extends CUserIdentity {
 				'condition' =>"txt_correo=:txtUserName",'params'=>array(':txtUserName'=> $this->username), 
 		) ); // here I use Email as user name which comes from database
 		
+		$activacion = null;
+		if($usuario){
+			$activacion = ActivarUsuario::model()->find(array(
+				'condition' => 'id_usuario=:idUser',
+				'params' => array(
+					':idUser' => $usuario->id_usuario
+				)
+			));
+		}
+		
 		if ($usuario === null) {
 			$this->_id = 'user Null';
 			$this->errorCode = self::ERROR_USERNAME_INVALID;
@@ -26,8 +36,10 @@ class UserIdentity extends CUserIdentity {
 		// $err = "You have been Inactive by Admin.";
 		// $this->errorCode = $err;
 		// }
-		
-		else {
+		else if($activacion->fch_activacion === null){
+			$this->_id = 'actvite invalid';
+			$this->errorCode = "Cuenta no se ha activado";
+		}else {
 			
 			$this->_id=$usuario->id_usuario;
 			
