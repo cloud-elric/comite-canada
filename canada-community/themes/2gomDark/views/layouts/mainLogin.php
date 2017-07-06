@@ -92,6 +92,18 @@
 
 
 $(window).load(function() {
+
+<?php
+    foreach(Yii::app()->user->getFlashes() as $key => $message) {
+		if($key=="success"){
+		?>
+        toastrSuccess("<?=$message?>");
+  <?php  
+  }}
+?>
+
+
+
 <?php if(Yii::app()->user->hasFlash('success')):?>
 
 	toastrSuccess("<?php echo Yii::app()->user->getFlash('success'); ?>");

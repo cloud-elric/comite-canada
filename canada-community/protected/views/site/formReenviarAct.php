@@ -1,5 +1,5 @@
 <?php
-$this->pageTitle = Yii::t('general', 'recuperarPassTitle');
+$this->pageTitle = Yii::t('general', 'reenviarEmailActivacion');
 /*
 $form = $this->beginWidget ( 'CActiveForm', array (
 		'id' => 'login-form',
@@ -59,13 +59,13 @@ $form = $this->beginWidget ( 'CActiveForm', array (
 				) );
 				?>
 
-					<p><?=Yii::t('formRecoveryPass', 'instrucciones')?></p>
+					<p><?=Yii::t('resendemailactivation', 'instrucciones')?></p>
 					
 					<?php # echo $form->labelEx($model,'username'); ?>
 					<?php echo $form->textField($model,'username', array("class"=>"form-control",'placeholder'=>Yii::t('login', 'usuario'))); ?>
 					<?php  echo $form->error($model,'username'); ?>
 					
-					<?php echo CHtml::submitButton('Reenviar Email', array("class"=>"btn btn-blue")); ?>
+					<?php echo CHtml::submitButton(Yii::t('resendemailactivation', 'btnSend'), array("class"=>"btn btn-blue")); ?>
 
 					<?php # echo CHtml::link("Olvide mi contraseña", array("site/requestPassword/t/".$concurso->txt_token), array("class"=>"olvide"))?>
 

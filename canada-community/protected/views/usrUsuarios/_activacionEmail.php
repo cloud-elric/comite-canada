@@ -33,8 +33,8 @@
 												<td width="36"></td>
 												<td width="454" align="left"
 													style="color: #444444; border-collapse: collapse; font-size: 11pt; font-family: proxima_nova, 'Open Sans', 'Lucida Grande', 'Segoe UI', Arial, Verdana, 'Lucida Sans Unicode', Tahoma, 'Sans Serif'; max-width: 454px;"
-													valign="top">Welcome <?=$competidor->txt_nombre?> <?=$competidor->txt_apellido_paterno?>,<br>
-												<br>For active your acount click the next <a
+													valign="top">Hey <?=$data ['nombreCompetidor']?>,<br>
+												<br>In order to activate your account, please click on the following <a
 														href="<?php echo Yii::app()->createAbsoluteUrl('site/activateAccount', array("token"=>$data["token"]));?>">
 														link</a>:<br>
 												<br>
@@ -44,7 +44,7 @@
 															href="<?php echo Yii::app()->createAbsoluteUrl('site/activateAccount', array("token"=>$data["token"]));?>"
 															target="_blank">Active account</a>
 													</center> 
-												<br>Thanks!<br>- Team Global judgin.
+												<br>Thanks!<br>- The GlobalJudging Team.
 												</td>
 												<td width="36"></td>
 											</tr>

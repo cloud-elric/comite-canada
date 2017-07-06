@@ -251,6 +251,18 @@ class SiteController extends Controller {
 	
 						$recuperar->b_usado = 1;
 						if ($recuperar->save ()) {
+
+							$activacion = ActivarUsuario::model()->find(array(
+								'condition' => 'id_usuario=:idUsuario',
+								'params' => array(
+									':idUsuario' => $usuario->id_usuario
+								)
+							));
+							
+							$fecha_actual=date("Y-m-d H:m:s");
+							$activacion->fch_activacion = $fecha_actual;
+							$activacion->save();	
+
 								
 							$tx->commit ();
 							Yii::app()->user->setState("complete", Yii::t('resetPassword', 'successMessage'));
@@ -461,10 +473,10 @@ class SiteController extends Controller {
 					// Preparamos los datos para enviar el correo
 					$view = "../usrUsuarios/_activacionEmail";
 					$data ["token"] = $activacion->txt_token;
-
+					$data ['nombreCompetidor'] = $usuario->txt_nombre." ".$usuario->txt_apellido_paterno;
 					// Envia correo electronico
-					$this->sendEmail( "Correo de activacion de cuenta", $view, $data, $usuario );
-					Yii::app ()->user->setFlash ( 'success', "Te hemos enviado un correo a:".$usuario->txt_correo );
+					$this->sendEmail( Yii::t('general', 'titleSendEmailActivation'), $view, $data, $usuario );
+					Yii::app ()->user->setFlash ( 'success', Yii::t('general', 'sendEmailActivationAgain') );
 				} else {
 					
 				}

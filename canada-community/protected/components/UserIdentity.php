@@ -9,7 +9,7 @@ class UserIdentity extends CUserIdentity {
 	private $_id;
 	
 	public function authenticate() {
-		
+		$error = 1;
 		$usuario = UsrUsuarios::model ()->find ( array (
 				'condition' =>"txt_correo=:txtUserName",'params'=>array(':txtUserName'=> $this->username), 
 		) ); // here I use Email as user name which comes from database
@@ -36,9 +36,10 @@ class UserIdentity extends CUserIdentity {
 		// $err = "You have been Inactive by Admin.";
 		// $this->errorCode = $err;
 		// }
-		else if($activacion->fch_activacion === null){
-			$this->_id = 'actvite invalid';
+		else if(!$activacion->fch_activacion){
+			$this->_id = $this->username;
 			$this->errorCode = "Cuenta no se ha activado";
+			$error = 2;
 		}else {
 			
 			$this->_id=$usuario->id_usuario;
@@ -47,9 +48,12 @@ class UserIdentity extends CUserIdentity {
 			//Yii::app ()->user->setState ( "roles", $usuario->b_juez_admin);
 			
 			$this->errorCode = self::ERROR_NONE;
+
+			$error = 0;
 		}
 		
-		return ! $this->errorCode;
+		//return ! $this->errorCode;
+		return $error;
 	}
 	
 	public function authenticateFacebook($usuario){

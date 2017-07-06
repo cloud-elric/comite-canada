@@ -9,5 +9,7 @@ return array(
 	'necesitarCuenta'=>'Sign up',
 	'facebook'=>'Login with Facebook',
 	'errorInicio'=>'Wrong e-mail or password',
-	'ingresar'=>'Login'
+	'errorActivacion'=>'You must activate your account',
+	'ingresar'=>'Login',
+	'reenviarCorreoActivacion'=>'Re-send email activation'
 );
