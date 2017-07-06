@@ -423,4 +423,56 @@ class SiteController extends Controller {
 		
 		return $concurso;
 	}
+
+	public function actionReenviarActivacion($t = null){
+		$this->layout = 'mainLogin';
+		// Verifica que exita el concurso
+		$concurso = $this->verificarToken ( $t );
+		
+		// Iniciamos el modelo
+		$model = new LoginForm ();
+		
+		if (isset ( $_POST ['LoginForm'] )) {
+			$model->attributes = $_POST ['LoginForm'];
+			
+			// Busca el la base de datos por su email
+			$usuario = UsrUsuarios::model ()->find ( array (
+					"condition" => "txt_correo=:email",
+					"params" => array (
+							":email" => $model->username 
+					) 
+			) );
+			// Si no encuentra el correo electronico mandamos un error
+			if (empty ( $usuario )) {
+				$model->addError ( "username", Yii::t('formRecoveryPass', 'messageError') );
+				// Si se encuentra el usuario
+			} else {
+				// Se genera un token para que el usuario pueda ser identificado y cambiar su password
+				/*$recuperarPass = new UsrUsuariosRecuperarPasswords ();
+				$isSaved = $recuperarPass->saveRecoveryPass ( $usuario->id_usuario );*/
+				$activacion = ActivarUsuario::model()->find(array(
+					'condition' => 'id_usuario=:idUsuario',
+					'params' => array(
+						':idUsuario' => $usuario->id_usuario
+					)
+				));
+			
+				if ($activacion) {
+					// Preparamos los datos para enviar el correo
+					$view = "../usrUsuarios/_activacionEmail";
+					$data ["token"] = $activacion->txt_token;
+
+					// Envia correo electronico
+					$this->sendEmail( "Correo de activacion de cuenta", $view, $data, $usuario );
+					Yii::app ()->user->setFlash ( 'success', "Te hemos enviado un correo a:".$usuario->txt_correo );
+				} else {
+					
+				}
+			}
+		}
+		$this->render ( "formReenviarAct", array (
+				"model" => $model,
+				"concurso" => $concurso 
+		) );
+	}
 }

@@ -252,20 +252,15 @@ class UsrUsuariosController extends Controller {
 							$view = "_activacionEmail";
 							$data ["token"] = $activar->txt_token;
 							//$this->loginCompetidor ( $competidor, $concurso );
-<<<<<<< HEAD
-							
-							$this->sendEmail2( "Correo de activacion de cuenta", $view, $data, $competidor );
-							Yii::app ()->user->setFlash ( 'success', "Te hemos enviado un correo" );
-=======
 						
-							$this->sendEmail ( "Correo de activacion de cuenta", $view, $data, $usuario );
+							$this->sendEmail2 ( "Correo de activacion de cuenta", $view, $data, $usuario );
 							Yii::app ()->user->setFlash ( 'success', "Te hemos enviado un correo a:".$competidor->txt_correo );
 
 							$this->redirect ( Yii::app ()->homeUrl );
 
 						} else {
 							$transaction->rollback ();
->>>>>>> refs/remotes/origin/master
+
 						}
 					}
 					// Si existe un error realizamos un rollback
