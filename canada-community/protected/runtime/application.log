@@ -5970,3 +5970,79 @@ Stack trace:
 #17 {main}
 REQUEST_URI=/comite-canada/canada-community/site/login/t/con_73cdf1c4f187ef82b94a945feae9d32a5783ddc6232582
 ---
+2017/07/05 23:44:46 [error] [exception.CException] exception 'CException' with message 'SiteController cannot find the requested view "formReenviarAct".' in C:\xampp\htdocs\yii\framework\web\CController.php:878
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(782): CController->renderPartial('formReenviarAct', Array, true)
+#1 C:\xampp\htdocs\comite-canada\canada-community\protected\controllers\SiteController.php(474): CController->render('formReenviarAct', Array)
+#2 [internal function]: SiteController->actionReenviarActivacion('con_73cdf1c4f18...')
+#3 C:\xampp\htdocs\yii\framework\web\actions\CAction.php(109): ReflectionMethod->invokeArgs(Object(SiteController), Array)
+#4 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(SiteController), Object(ReflectionMethod), Array)
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('reenviarActivac...')
+#9 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/reenviarAc...')
+#10 C:\xampp\htdocs\yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\comite-canada\canada-community\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/comite-canada/canada-community/site/reenviarActivacion/t/con_73cdf1c4f187ef82b94a945feae9d32a5783ddc6232582
+HTTP_REFERER=http://localhost/comite-canada/canada-community/site/login/t/con_73cdf1c4f187ef82b94a945feae9d32a5783ddc6232582
+---
+2017/07/05 23:46:19 [error] [exception.CException] exception 'CException' with message 'SiteController cannot find the requested view "formReenviarAct".' in C:\xampp\htdocs\yii\framework\web\CController.php:878
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(782): CController->renderPartial('formReenviarAct', Array, true)
+#1 C:\xampp\htdocs\comite-canada\canada-community\protected\controllers\SiteController.php(474): CController->render('formReenviarAct', Array)
+#2 [internal function]: SiteController->actionReenviarActivacion('con_73cdf1c4f18...')
+#3 C:\xampp\htdocs\yii\framework\web\actions\CAction.php(109): ReflectionMethod->invokeArgs(Object(SiteController), Array)
+#4 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(SiteController), Object(ReflectionMethod), Array)
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('reenviarActivac...')
+#9 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/reenviarAc...')
+#10 C:\xampp\htdocs\yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\comite-canada\canada-community\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/comite-canada/canada-community/site/reenviarActivacion/t/con_73cdf1c4f187ef82b94a945feae9d32a5783ddc6232582
+HTTP_REFERER=http://localhost/comite-canada/canada-community/site/login/t/con_73cdf1c4f187ef82b94a945feae9d32a5783ddc6232582
+---
+2017/07/05 23:47:28 [error] [exception.CException] exception 'CException' with message 'SiteController cannot find the requested view "formReenviarAct".' in C:\xampp\htdocs\yii\framework\web\CController.php:878
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(782): CController->renderPartial('formReenviarAct', Array, true)
+#1 C:\xampp\htdocs\comite-canada\canada-community\protected\controllers\SiteController.php(474): CController->render('formReenviarAct', Array)
+#2 [internal function]: SiteController->actionReenviarActivacion('con_73cdf1c4f18...')
+#3 C:\xampp\htdocs\yii\framework\web\actions\CAction.php(109): ReflectionMethod->invokeArgs(Object(SiteController), Array)
+#4 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(SiteController), Object(ReflectionMethod), Array)
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('reenviarActivac...')
+#9 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/reenviarAc...')
+#10 C:\xampp\htdocs\yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\comite-canada\canada-community\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/comite-canada/canada-community/site/reenviarActivacion/t/con_73cdf1c4f187ef82b94a945feae9d32a5783ddc6232582
+---
+2017/07/06 01:52:33 [error] [php] Undefined variable: idC (C:\xampp\htdocs\comite-canada\canada-community\protected\controllers\UsrUsuariosController.php:315)
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(133): UsrUsuariosController->runAction()
+#1 C:\xampp\htdocs\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#2 C:\xampp\htdocs\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#3 C:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(58): UsrUsuariosController->filterAccessControl()
+#4 C:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(265): UsrUsuariosController->runActionWithFilters()
+#7 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): UsrUsuariosController->run()
+#8 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\xampp\htdocs\yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\comite-canada\canada-community\index.php(13): CWebApplication->run()
+REQUEST_URI=/comite-canada/canada-community/usrUsuarios/concurso
+2017/07/06 01:52:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "images/profiles/usr_79a2d32806cf67e2ee15ab9c3ef0bc5a58e51216516d3/https://scontent.xx.fbcdn.net/v/t1.0-1/s200x200/10354686_10150004552801856_220367501106153455_n.jpg".' in C:\xampp\htdocs\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('images/profiles...')
+#1 C:\xampp\htdocs\yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\comite-canada\canada-community\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/comite-canada/canada-community/images/profiles/usr_79a2d32806cf67e2ee15ab9c3ef0bc5a58e51216516d3/https://scontent.xx.fbcdn.net/v/t1.0-1/s200x200/10354686_10150004552801856_220367501106153455_n.jpg?oh=1e16b977fbf259fc86e4acd08030af2b&oe=59613650
+HTTP_REFERER=http://localhost/comite-canada/canada-community/usrUsuarios/concurso
+---
