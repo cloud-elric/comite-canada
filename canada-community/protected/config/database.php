@@ -10,5 +10,4 @@
 				
 			'schemaCachingDuration'=>3600,
 	);
-
 return $dataBase;
