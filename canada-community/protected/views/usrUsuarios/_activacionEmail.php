@@ -33,18 +33,18 @@
 												<td width="36"></td>
 												<td width="454" align="left"
 													style="color: #444444; border-collapse: collapse; font-size: 11pt; font-family: proxima_nova, 'Open Sans', 'Lucida Grande', 'Segoe UI', Arial, Verdana, 'Lucida Sans Unicode', Tahoma, 'Sans Serif'; max-width: 454px;"
-													valign="top">Welcome <?=$competidor->txt_nombre?> <?=$competidor->txt_apellido_paterno?>,<br>
-												<br>For active your acount click the next <a
-														href="<?php echo Yii::app()->createAbsoluteUrl('usrUsuario/activateAccount', array("token"=>$data["token"], "t"=>$data["t"]));?>">
+													valign="top">Hey <?=$data ['nombreCompetidor']?>,<br>
+												<br>In order to activate your account, please click on the following <a
+														href="<?php echo Yii::app()->createAbsoluteUrl('site/activateAccount', array("token"=>$data["token"]));?>">
 														link</a>:<br>
 												<br>
 												<center>
 														<a
 															style="border-radius: 3px; font-size: 15px; color: white; border: 1px #1373b5 solid; box-shadow: inset 0 1px 0 #6db3e6, inset 1px 0 0 #48a1e2; text-decoration: none; padding: 14px 7px 14px 7px; width: 210px; max-width: 210px; font-family: proxima_nova, 'Open Sans', 'lucida grande', 'Segoe UI', arial, verdana, 'lucida sans unicode', tahoma, sans-serif; display: block; background-color: #007ee6; text-align: center;"
-															href="<?php echo Yii::app()->createAbsoluteUrl('usrUsuario/activateAccount', array("token"=>$data["token"], "t"=>$data["t"]));?>"
+															href="<?php echo Yii::app()->createAbsoluteUrl('site/activateAccount', array("token"=>$data["token"]));?>"
 															target="_blank">Active account</a>
 													</center> 
-												<br>Thanks!<br>- Team Global judgin.
+												<br>Thanks!<br>- The GlobalJudging Team.
 												</td>
 												<td width="36"></td>
 											</tr>
@@ -68,7 +68,7 @@
 											<tr
 												style="color: #a8b9c6; font-size: 11px; font-family: proxima_nova, 'Open Sans', 'Lucida Grande', 'Segoe UI', Arial, Verdana, 'Lucida Sans Unicode', Tahoma, 'Sans Serif';">
 												<td width="400" align="left"></td>
-												<td width="128" align="right">© 2016 Haz Clic con México</td>
+												<td width="128" align="right">© <?=date('Y')?> Haz Clic con México</td>
 											</tr>
 										</tbody>
 									</table></td>

@@ -10,6 +10,7 @@ class LoginForm extends CFormModel
 	public $username;
 	public $password;
 	public $rememberMe;
+	public $isActivate;
 
 	private $_identity;
 
@@ -51,8 +52,12 @@ class LoginForm extends CFormModel
 		if(!$this->hasErrors())
 		{
 			$this->_identity=new UserIdentity($this->username,$this->password);
-			if(!$this->_identity->authenticate())
-				$this->addError('password','Usuario y/o password incorrecto.');
+			$error = $this->_identity->authenticate();
+			if($error == 1){
+				$this->addError('password',Yii::t('login', 'errorInicio'));
+			}else if($error ==2){
+				$this->addError('isActivate',Yii::t('login', 'errorActivacion'));	
+			}	
 		}
 	}
 

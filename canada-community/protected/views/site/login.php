@@ -61,8 +61,24 @@ $cs->registerScriptFile ( Yii::app ()->request->baseUrl . "/js/facebook/fb.js" )
 					$errores = $model->getErrors ();
 					
 					if (! empty ( $errores )) {
+						
+						if(isset($errores['password'][0])){?>
+
+						<div class="errorMessage"><?=isset($errores['password'][0])?$errores['password'][0]:''?></div>	
+<?php
+						}
+						if(isset($errores['isActivate'][0])){?>
+
+						<div class="errorMessage"><?=isset($errores['isActivate'][0])?$errores['isActivate'][0]:''?></div>
+<?php
+						}
 						?>
-					<div class="errorMessage"><?=Yii::t('login', 'errorInicio')?></div>
+					
+					
+					<?php }?>
+
+					<?php if(isset($errores['isActivate'][0])){?>	
+					<?= CHtml::link(Yii::t('login', 'reenviarCorreoActivacion'), array("site/reenviarActivacion/t/".$concurso->txt_token), array("class"=>"olvide"))?>
 					<?php }?>
 					<?=CHtml::submitButton(Yii::t('login', 'ingresar'), array("class"=>"btn btn-blue", 'id'=>'login-button')); ?>
 					
@@ -80,9 +96,11 @@ $cs->registerScriptFile ( Yii::app ()->request->baseUrl . "/js/facebook/fb.js" )
 				</button> -->
 
 					<?= CHtml::link(Yii::t('login', 'necesitarCuenta'), array("usrUsuarios/registrar/t/".$concurso->txt_token), array("class"=>"necesitoe btn btn-blue btn-green-sign")); ?>
+
 					
 					<?= CHtml::link(Yii::t('login','olvidePass'), array("site/requestPassword/t/".$concurso->txt_token), array("class"=>"olvide"))?>
 
+					
 					<!-- <a class="necesito" href="">Necesito una cuenta</a> -->
 					<?php # CHtml::link(Yii::t('login', 'necesitarCuenta'), array("usrUsuarios/registrar/t/".$concurso->txt_token), array("class"=>"necesito")); ?>
 

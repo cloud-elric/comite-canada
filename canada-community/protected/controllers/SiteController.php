@@ -251,6 +251,18 @@ class SiteController extends Controller {
 	
 						$recuperar->b_usado = 1;
 						if ($recuperar->save ()) {
+
+							$activacion = ActivarUsuario::model()->find(array(
+								'condition' => 'id_usuario=:idUsuario',
+								'params' => array(
+									':idUsuario' => $usuario->id_usuario
+								)
+							));
+							
+							$fecha_actual=date("Y-m-d H:m:s");
+							$activacion->fch_activacion = $fecha_actual;
+							$activacion->save();	
+
 								
 							$tx->commit ();
 							Yii::app()->user->setState("complete", Yii::t('resetPassword', 'successMessage'));
@@ -349,5 +361,130 @@ class SiteController extends Controller {
 	public function actionTest2(){
 		echo Yii::app()->language();
 		exit;
+	}
+
+	public function actionActivateAccount($token = null){
+		//Buscar token en tabla activar_usuario
+		$activacion = ActivarUsuario::model()->find(array(
+			'condition' => 'txt_token=:idToken',
+			'params' => array(
+				':idToken' => $token
+			)
+		));
+		// Buscamos el concurso
+		$concurso = ConContests::model()->find(array(
+			'condition' => 'id_contest=:idCon',
+			'params' => array(
+				':idCon' => $activacion->id_contest
+			)
+		));
+
+		$user = UsrUsuarios::model()->find(array(
+			'condition' => 'id_usuario=:idUser',
+			'params' => array(
+				":idUser" => $activacion->id_usuario,
+			)
+		));
+		$fecha_actual=date("Y-m-d H:m:s");
+		$activacion->fch_activacion = $fecha_actual;
+		$activacion->save();
+
+		if($user && $concurso){
+			$this->loginCompetidor( $user, $concurso );
+		}else{
+			exit;
+		}
+	}
+
+	/**
+	 * Loguea al usuario despues de registrarse
+	 *
+	 * @param UsrUsuarios $competidor        	
+	 */
+	private function loginCompetidor($competidor, $concurso) {
+		$model = new LoginForm ();
+		$model->username = $competidor->txt_correo;
+		$model->password = $competidor->txt_password;
+		// validate user input and redirect to the previous page if valid
+		if ($model->validate () && $model->login ()) {
+			$this->crearSesionUsuarioConcurso ( $competidor->id_usuario, $concurso );
+			$this->redirect ( array('usrUsuarios/concurso') );
+			return;
+		}else{
+			
+			
+		}
+		
+		exit;
+	}
+
+	/**
+	 * Valida el token enviado
+	 *
+	 * @param unknown $token        	
+	 * @throws CHttpException
+	 */
+	public function validarToken($token) {
+		
+		// Buscamos el concurso mediante el token
+		$concurso = ConContests::buscarPorToken ( $token );
+		// Si no existe el concurso le mandamos error
+		if (empty ( $concurso )) {
+			throw new CHttpException ( 404, 'The requested page does not exist.' );
+		}
+		
+		return $concurso;
+	}
+
+	public function actionReenviarActivacion($t = null){
+		$this->layout = 'mainLogin';
+		// Verifica que exita el concurso
+		$concurso = $this->verificarToken ( $t );
+		
+		// Iniciamos el modelo
+		$model = new LoginForm ();
+		
+		if (isset ( $_POST ['LoginForm'] )) {
+			$model->attributes = $_POST ['LoginForm'];
+			
+			// Busca el la base de datos por su email
+			$usuario = UsrUsuarios::model ()->find ( array (
+					"condition" => "txt_correo=:email",
+					"params" => array (
+							":email" => $model->username 
+					) 
+			) );
+			// Si no encuentra el correo electronico mandamos un error
+			if (empty ( $usuario )) {
+				$model->addError ( "username", Yii::t('formRecoveryPass', 'messageError') );
+				// Si se encuentra el usuario
+			} else {
+				// Se genera un token para que el usuario pueda ser identificado y cambiar su password
+				/*$recuperarPass = new UsrUsuariosRecuperarPasswords ();
+				$isSaved = $recuperarPass->saveRecoveryPass ( $usuario->id_usuario );*/
+				$activacion = ActivarUsuario::model()->find(array(
+					'condition' => 'id_usuario=:idUsuario',
+					'params' => array(
+						':idUsuario' => $usuario->id_usuario
+					)
+				));
+			
+				if ($activacion) {
+					// Preparamos los datos para enviar el correo
+					$view = "../usrUsuarios/_activacionEmail";
+					$data ["token"] = $activacion->txt_token;
+					$data ['nombreCompetidor'] = $usuario->txt_nombre." ".$usuario->txt_apellido_paterno;
+					// Envia correo electronico
+					$this->sendEmail( Yii::t('general', 'titleSendEmailActivation'), $view, $data, $usuario );
+					Yii::app ()->user->setFlash ( 'success', Yii::t('general', 'sendEmailActivationAgain') );
+				} else {
+					
+				}
+			}
+		}
+		$this->render ( "formReenviarAct", array (
+				"model" => $model,
+				"concurso" => $concurso 
+		) );
 	}
 }
